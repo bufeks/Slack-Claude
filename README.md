@@ -71,16 +71,39 @@ python unreplied_mentions.py
 python bot.py
 ```
 
-## Docker (オプション)
+## サーバーで常駐させる (Docker)
 
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "bot.py"]
+### 1. サーバーにクローン
+
+```bash
+git clone https://github.com/bufeks/Slack-Claude.git
+cd Slack-Claude
 ```
+
+### 2. 環境変数を設定
+
+```bash
+cp .env.example .env
+nano .env  # トークン等を入力
+```
+
+### 3. 起動
+
+```bash
+# バックグラウンドで起動
+docker compose up -d
+
+# ログ確認
+docker compose logs -f
+
+# 停止
+docker compose stop
+
+# 再起動
+docker compose restart
+```
+
+サーバー再起動後も自動で立ち上がります。
 
 ## ライセンス
 
